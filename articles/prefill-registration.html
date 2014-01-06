@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <title>Prefill Registration Data - Paylogic developer portal</title>
+            <meta charset="utf-8">
+            
+                <link href="http://developer.paylogic.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Paylogic developer portal Full Atom Feed">
+            
+            
+            
+            
+                <link href="http://developer.paylogic.com/feeds/integration.atom.xml" type="application/atom+xml" rel="alternate" title="Paylogic developer portal Categories Atom Feed">
+            
+            
+            
+
+            <!-- Bookmark icon -->
+            <link rel="shortcut icon" href="http://developer.paylogic.com/static/images/favicon.ico">
+
+            <!-- Custom Paylogic Bootstrap theme -->
+            <link rel="stylesheet" type="text/css" href="http://developer.paylogic.com/theme/css/bootstrap-paylogic.css">
+            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+            <!-- Devportal specific style tweaks -->
+            <link rel="stylesheet" type="text/css" href="http://developer.paylogic.com/theme/css/style.css">
+    </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="with-gutter">
+                    <a class="brand" href="/">Paylogic</a>
+                    <a href="/" class="brand-text">developer portal</a>
+
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                                <li><a href="/">Welcome</a></li>
+                                <li><a href="/pages/integration.html">Integration</a></li>
+                                <li><a href="/authors.html">Authors</a></li>
+                                <li><a href="/pages/about.html">About</a></li>
+                            
+                            
+                            <li class="dropdown">
+                                <a href="dropdown-toggle" role="button" data-toggle="dropdown"
+                                data-target="#">
+                                    Categories <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                            <li><a href="http://developer.paylogic.com/category/agile.html">Agile</a></li>
+                                            <li><a href="http://developer.paylogic.com/category/devops.html">DevOps</a></li>
+                                            <li><a href="http://developer.paylogic.com/category/general.html">General</a></li>
+                                            <li class="active"><a href="http://developer.paylogic.com/category/integration.html">Integration</a></li>
+    
+                                </ul>
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper with-gutter container-fluid">
+            <div class="row-fluid">
+
+    <section id="content" class="body">
+        <article>
+
+            <header>
+                <h1 class="entry-title">Prefill Registration Data</h1>
+            </header>
+
+            <footer class="post-info">
+                <abbr class="published" title="2013-12-02T10:56:00">
+                    Mon 02 December 2013
+                </abbr>
+                    <address class="vcard author">
+                        By <a class="url fn" href="http://developer.paylogic.com/author/spyros-ioakeimidis.html">Spyros Ioakeimidis</a>
+                    </address>
+            </footer><!-- /.post-info -->
+
+            <div class="entry-content">
+                <p><em>Paylogic offers a feature to allow the prefilling of the personal data of a
+consumer during the sales process via a personalized URL. This can be used
+whenever a merchant already has the data of the consumers and wants to offer
+these consumers a more personalized and smooth ticketing process, or when a
+pre-registration step is used. The following sections describe the steps that
+third parties have to implement in order to provide the possibility of
+prefilling the registration form in the front office.</em></p>
+<div class="section" id="json-data-format">
+<h2>JSON data format</h2>
+<p>The first step is to construct the data. The data should be structured using
+JSON. The JSON data should adhere to the following format:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Test Client First Name&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Test Client Last Name&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;test@testmail.com&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;gender&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;birth_date&quot;</span><span class="o">:</span> <span class="s2">&quot;1978-10-07&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;0123456789&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;address&quot;</span><span class="o">:</span> <span class="s2">&quot;Address 1A&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;postal_code&quot;</span><span class="o">:</span> <span class="s2">&quot;9999AB&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Groningen&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;country&quot;</span><span class="o">:</span> <span class="s2">&quot;NL&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<p>The <code>gender</code> attribute should contain a code according to <a class="reference external" href="http://en.wikipedia.org/wiki/ISO/IEC_5218">ISO 5218</a>, which specifies the following
+codes:</p>
+<ul class="simple">
+<li>0 = not known</li>
+<li>1 = male</li>
+<li>2 = female</li>
+<li>9 = not applicable</li>
+</ul>
+<p>The format of the <code>birth_date</code> attribute should be <code>YYYY-MM-DD</code>.
+This format is according to <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>.
+Finally, the <code>country</code> code attribute should contain a value according to
+<a class="reference external" href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm">ISO 3166</a>.
+For example, for The Netherlands the country code <code>NL</code> should be used. It
+should be mentioned that no certain format is required for <code>postal_code</code>,
+as long as its length is less than or equal to 12.</p>
+</div>
+<div class="section" id="compression-and-encoding">
+<h2>Compression and Encoding</h2>
+<p>The second step is to compress and encode the data. Compression helps to reduce
+the length of the data, as the URL should contain up to a maximum number of
+characters. It is not only that the JSON data itself might be long. Encoding
+also increases the length of the data by approximately 33%.</p>
+<p>The pseudo code below illustrates the process of encoding and compression. It
+also includes the creation of the JSON data. The data should first be compressed
+and then encoded.</p>
+<pre class="code literal-block">
+create the JSON data
+
+create a string out of the JSON data
+
+compress the data using gzip compatible compression
+
+encode the data using base64 and make them url safe
+</pre>
+<p>The way encoding and compression can be implemented depends on which programming
+language is used. A simple implementation is illustrated both for Python and
+PHP. If there are any questions regarding the implementation, then please contact
+the Paylogic support team.</p>
+<div class="section" id="python">
+<h3>Python</h3>
+<p>The compression is done using the <a class="reference external" href="http://www.zlib.net/">zlib</a>
+standard python module. The data is encoded to utf-8 prior to compression. Data
+encoding is performed using base64 as specified in <a class="reference external" href="http://tools.ietf.org/html/rfc3548.html">RFC 3548</a></p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">zlib</span>
+
+<span class="kn">from</span> <span class="nn">base64</span> <span class="kn">import</span> <span class="n">urlsafe_b64encode</span>
+
+<span class="c"># construct the json data</span>
+<span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;first_name&quot;</span><span class="p">:</span> <span class="s">&quot;Test Client First Name&quot;</span><span class="p">,</span> <span class="o">...</span> <span class="p">}</span>
+
+<span class="c"># create a string of the json data</span>
+<span class="n">json_data_string</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+
+<span class="c"># encode the data to utf8 and compress it</span>
+<span class="n">compressed_data</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">json_data_string</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">))</span>
+
+<span class="c"># encode the data using base64 and urlsafe</span>
+<span class="n">encoded</span> <span class="o">=</span> <span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">compressed_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="php">
+<h3>PHP</h3>
+<p>The compression is done using the <a class="reference external" href="http://php.net/manual/en/function.gzcompress.php">gzcompress</a>
+method, which uses the <a class="reference external" href="http://www.zlib.net/">zlib</a> data format. The data is
+encoded to utf-8 prior to compression. Data encoding is performed using base64
+as specified in <a class="reference external" href="http://tools.ietf.org/html/rfc3548.html">RFC 3548</a></p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<span class="c1"># create a string of the json data</span>
+<span class="nv">$json_data_string</span> <span class="o">=</span> <span class="s1">&#39;{&quot;first_name&quot;: &quot;Test Client First Name&quot;, ... }&#39;</span><span class="p">;</span>
+
+<span class="c1"># encode data to utf8 and compress it</span>
+<span class="nv">$compressed_data</span> <span class="o">=</span> <span class="nb">gzcompress</span><span class="p">(</span><span class="nx">utf8_encode</span><span class="p">(</span><span class="nv">$json_data_string</span><span class="p">));</span>
+
+<span class="c1"># encode the data using base64</span>
+<span class="nv">$encoded_data</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nv">$compressed_data</span><span class="p">);</span>
+
+<span class="c1"># make data urlsafe</span>
+<span class="nv">$encoded_data</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="s1">&#39;/&#39;</span><span class="p">),</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">),</span> <span class="nv">$encoded_data</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="transferring-the-data">
+<h2>Transferring the data</h2>
+<p>The third step is to append the encoded and compressed data to the landing page
+URL. The landing page URL is the URL that is usually included within the
+invitation emails. The encoded and compressed data should be appended to the
+landing page URL <strong>after</strong> the fragment identifier (<strong>#</strong>). The advantage of
+this approach is that data after the fragment identifier is not sent over the
+network and is only used client-side.</p>
+<p>The implementation of this is left to the third parties. The only constraint is
+that the appended data should have a specific form. We assume that the landing
+page URL contains some query parameters (substituted with '...' in the
+following example for clarity) and <code>FGRAhdfhasAHDFA</code> is the encoded and
+compressed data. Then, a landing page URL with the appended data would have the
+following form:</p>
+<pre class="literal-block">
+http://tickets.company.com/?...#pld=FGRAhdfhasAHDFA
+</pre>
+<p>It is important to use <code>pld</code> as a parameter, as this is also used on the
+side of Paylogic, when retrieving the data from the URL. The above method will
+work if Paylogic handles the creation of the landing page.</p>
+<div class="section" id="third-party-handles-landing-page">
+<h3>Third party handles landing page</h3>
+<p>In case a third party handles the creation of the landing page, then one more
+step needs to be performed. The Javascript code below should be appended at the
+end of the landing page HTML document. This ensures that the data is read from
+the landing page URL and that it is appended in the queue URL, which resides as
+an iframe inside the landing page HTML document.</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="kd">var</span> <span class="nx">getHashParam</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^#&amp;]+)/g</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// This is to ensure that if the variable contains &#39;=&#39; then they remain in the value.</span>
+    <span class="c1">// for example: pld=FHadfsdhFJASDF3423==</span>
+    <span class="c1">// In this case:</span>
+    <span class="c1">//   key: pld</span>
+    <span class="c1">//   value: FHadfsdhFJASDF3423==</span>
+    <span class="kd">var</span> <span class="nx">param</span> <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/=(.+)?/</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;pld&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">queue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;paylogic-frontoffice&#39;</span><span class="p">);</span>
+        <span class="nx">queue</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">src</span> <span class="o">+</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="nx">param</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+<span class="nx">getHashParam</span><span class="p">();</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+</div>
+</div>
+
+            </div> 
+
+                <div class="comments">
+                    <h2>Comments</h2>
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_identifier = "articles/prefill-registration.html";
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = 'http://paylogicdevportal.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                </div>
+
+        </article>
+    </section>
+
+            </div>
+        </div>
+
+        <div class="footer container-fluid with-gutter">
+            <div class="row-fluid">
+                <p>
+                    Copyright (c) 2013 <a href="http://www.paylogic.com" target="_blank">Paylogic</a>,
+                    built using the awesome <a href="http://getpelican.com" target="_blank">Pelican</a> static site generator.<br>
+                    This work is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Twitter Bootstrap -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-13304573-19', 'paylogic.com');
+            ga('send', 'pageview');
+        </script>
+
+    </body>
+</html>
